@@ -121,17 +121,11 @@ static int set_light_battery(struct light_device_t* dev,
 static int set_light_notifications(struct light_device_t* dev,
 		struct light_state_t const* state) {
 	if(is_lit(state) && state->flashOnMS) {
-		if(state->color & 0xff) {
-			write_int(CALL_LED_FILE, 1);
-			//write_int(MAIL_LED_FILE, 0);
-		}
-		else {
 			write_int(MAIL_LED_FILE, 1);
-			//write_int(CALL_LED_FILE, 0);
-		}
+			write_int("/data/system/mail_led", 1);
 	} else {
-		write_int(MAIL_LED_FILE, 0);
-		write_int(CALL_LED_FILE, 0);
+			write_int(MAIL_LED_FILE, 0);
+			write_int("/data/system/mail_led", 0);
 	}
 	LOGE("Notification led: %p(%d,%d,%d)\n", state->color, state->flashMode, state->flashOnMS, state->flashOffMS);
 	return 0;

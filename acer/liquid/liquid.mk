@@ -24,7 +24,11 @@ copybit.salsa \
 sensors.salsa \
 libcamera \
 libOmxCore \
-libOmxVidEnc 
+libOmxVdec \
+libOmxVidEnc
+
+# we have enough storage space to hold precise GC data
+PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Check generic.mk/languages_full.mk to see what applications/languages are installed turns out all languages get included if I don't specify, but some seem to be missing the actuall translation.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
@@ -44,11 +48,12 @@ DEVICE_PACKAGE_OVERLAYS := vendor/acer/liquid/overlay
 PRODUCT_COPY_FILES += \
 frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
 frameworks/base/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
-frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
 frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
 frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
 frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
 frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
 frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
 packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml
 
@@ -67,15 +72,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=240 \
     rild.libpath=/system/lib/libril-acer-1.so \
     rild.libargs=-d /dev/smd0 \
-    persist.rild.nitz_plmn= \
-    persist.rild.nitz_long_ons_0= \
-    persist.rild.nitz_long_ons_1= \
-    persist.rild.nitz_long_ons_2= \
-    persist.rild.nitz_long_ons_3= \
-    persist.rild.nitz_short_ons_0= \
-    persist.rild.nitz_short_ons_1= \
-    persist.rild.nitz_short_ons_2= \
-    persist.rild.nitz_short_ons_3= \
     persist.radio.skippable.mcclist=466,505 \
     persist.cust.tel.eons=1 \
     persist.ril.ecclist=000,08,110,112,118,119,911,999 \
@@ -83,10 +79,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.gprsclass=10
 
 # Acer specific proximity sensor calibration
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    hw.acer.psensor_thres=500 \
-#    hw.acer.lsensor_multiplier=-1 \
-#    hw.acer.psensor_mode=1
+PRODUCT_PROPERTY_OVERRIDES += \
+    hw.acer.psensor_calib_max_base=32717 \
+    hw.acer.psensor_calib_min_base=32716 \
+    hw.acer.psensor_thres=500 \
+    hw.acer.psensor_mode=1 
 
 # Acer hardware revision
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -122,10 +119,13 @@ DEVICE_PACKAGE_OVERLAYS += device/acer/liquid/overlay
 PRODUCT_COPY_FILES += \
 device/acer/liquid/proprietary/lib/liboemcamera.so:obj/lib/liboemcamera.so
 
-# Copy EGL libraries
+# Copy RIL libraries
 PRODUCT_COPY_FILES += \
 device/acer/liquid/proprietary/lib/libril-acer-1.so:system/lib/libril-acer-1.so \
-device/acer/liquid/proprietary/lib/libril-acerril-hook-oem.so:system/lib/libril-acerril-hook-oem.so
+device/acer/liquid/proprietary/lib/libril-acerril-hook-oem.so:system/lib/libril-acerril-hook-oem.so \
+device/acer/liquid/proprietary/lib/libril.so:obj/lib/libril.so \
+device/acer/liquid/proprietary/lib/libril.so:system/lib/libril.so
+
 
 # Copy EGL libraries
 PRODUCT_COPY_FILES += \
@@ -198,7 +198,7 @@ device/acer/liquid/proprietary/lib/libOmxEvrcEnc.so:system/lib/libOmxEvrcEnc.so 
 device/acer/liquid/proprietary/lib/libOmxMp3Dec.so:system/lib/libOmxMp3Dec.so \
 device/acer/liquid/proprietary/lib/libOmxQcelp13Dec.so:system/lib/libOmxQcelp13Dec.so \
 device/acer/liquid/proprietary/lib/libOmxQcelp13Enc.so:system/lib/libOmxQcelp13Enc.so \
-device/acer/liquid/proprietary/lib/libOmxVdec.so:system/lib/libOmxVdec.so
+#device/acer/liquid/proprietary/lib/libOmxVdec.so:system/lib/libOmxVdec.so
 #device/acer/liquid/proprietary/lib/libOmxVidEnc.so:system/lib/libOmxVidEnc.so
 
 # Copy kernel modules

@@ -1,0 +1,73 @@
+diff --git a/vendor/cyanogen/products/AndroidProducts.mk b/vendor/cyanogen/products/AndroidProducts.mk
+index 36689ef..157abba 100644
+--- a/vendor/cyanogen/products/AndroidProducts.mk
++++ b/vendor/cyanogen/products/AndroidProducts.mk
+@@ -31,4 +31,5 @@ PRODUCT_MAKEFILES := \
+     $(LOCAL_DIR)/cyanogen_vision.mk \
+     $(LOCAL_DIR)/cyanogen_z71.mk \
+     $(LOCAL_DIR)/cyanogen_zeppelin.mk \
+-    $(LOCAL_DIR)/cyanogen_zero.mk
++    $(LOCAL_DIR)/cyanogen_zero.mk \
++    $(LOCAL_DIR)/cyanogen_liquid.mk
+diff --git a/vendor/cyanogen/vendorsetup.sh b/vendor/cyanogen/vendorsetup.sh
+index 7e4b450..87ce391 100644
+--- a/vendor/cyanogen/vendorsetup.sh
++++ b/vendor/cyanogen/vendorsetup.sh
+@@ -31,5 +31,6 @@ add_lunch_combo cyanogen_vision-eng
+ add_lunch_combo cyanogen_z71-eng
+ add_lunch_combo cyanogen_zeppelin-eng
+ add_lunch_combo cyanogen_zero-eng
++add_lunch_combo cyanogen_liquid-eng
+ 
+ PATH=$PATH:$PWD/vendor/cyanogen/tools ; export PATH
+diff --git a/vendor/cyanogen/products/cyanogen_liquid.mk b/vendor/cyanogen/products/cyanogen_liquid.mk
+index e69de29..a839e6d 100644
+--- /dev/null
++++ b/vendor/cyanogen/products/cyanogen_liquid.mk
+@@ -0,0 +1,46 @@
++# Inherit AOSP device configuration for liquid.
++$(call inherit-product, device/acer/liquid/liquid.mk)
++
++# Inherit some common cyanogenmod stuff.
++$(call inherit-product, vendor/cyanogen/products/common_full.mk)
++
++# Include GSM stuff (not needed as custom Acer apns-list and Stk are used)
++$(call inherit-product, vendor/cyanogen/products/gsm.mk)
++
++#
++# Setup device specific product configuration.
++#
++
++TARGET_NO_KERNEL := true
++
++PRODUCT_NAME := cyanogen_liquid  
++PRODUCT_BRAND := acer
++PRODUCT_DEVICE := liquid
++
++PPRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=passion BUILD_ID=GRJ22 BUILD_DISPLAY_ID=GRJ22 BUILD_FINGERPRINT=google/passion/passion:2.3.4/GRJ22/121341:user/release-keys PRIVATE_BUILD_DESC="passion-user 2.3.4 GRJ22 121341 release-keys"
++
++# Extra Liquid overlay
++PRODUCT_PACKAGE_OVERLAYS += vendor/cyanogen/overlay/liquid
++
++# CYANOGEN_WITH_GOOGLE := true
++
++# Use a precompiled kernel until the merge with cm-kernel
++# TARGET_PREBUILT_KERNEL = device/acer/liquid/kernel/prebuilt-zImage
++
++# Set ro.modversion
++ifdef CYANOGEN_NIGHTLY
++    PRODUCT_PROPERTY_OVERRIDES += \
++        ro.modversion=CyanogenMod-7-$(shell date +%m%d%Y)-NIGHTLY-Liquid
++else
++    ifdef CYANOGEN_RELEASE
++        PRODUCT_PROPERTY_OVERRIDES += \
++            ro.modversion=CyanogenMod-7.1.0-RC0-Liquid
++    else
++        PRODUCT_PROPERTY_OVERRIDES += \
++            ro.modversion=CyanogenMod-7.1.0-RC0-Liquid-KANG
++    endif
++endif
++
++# Copy HDPI prebuilt files
++PRODUCT_COPY_FILES +=  \
++    vendor/cyanogen/prebuilt/hdpi/media/bootanimation.zip:system/media/bootanimation.zip

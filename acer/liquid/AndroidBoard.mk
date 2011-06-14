@@ -91,27 +91,27 @@ ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/root/init.rc | $(ACP)
 $(transform-prebuilt-to-target)
 
-file := $(TARGET_ROOT_OUT)/init.salsa.sh
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/root/init.salsa.sh | $(ACP)
-$(transform-prebuilt-to-target)
+#file := $(TARGET_ROOT_OUT)/init.salsa.sh
+#ALL_PREBUILT += $(file)
+#$(file) : $(LOCAL_PATH)/root/init.salsa.sh | $(ACP)
+#$(transform-prebuilt-to-target)
 
 file := $(TARGET_ROOT_OUT)/initlogo.rle
 ALL_PREBUILT += $(file)
 $(file) : $(LOCAL_PATH)/root/initlogo.rle | $(ACP)
 $(transform-prebuilt-to-target)
 
-file := $(TARGET_ROOT_OUT)/sbin/mountbind.sh
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/root/sbin/mountbind.sh | $(ACP)
-$(transform-prebuilt-to-target)
+#file := $(TARGET_ROOT_OUT)/sbin/mountbind.sh
+#ALL_PREBUILT += $(file)
+#$(file) : $(LOCAL_PATH)/root/sbin/mountbind.sh | $(ACP)
+#$(transform-prebuilt-to-target)
 
-file := $(TARGET_ROOT_OUT)/sbin/qmuxd.sh
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/root/sbin/qmuxd.sh | $(ACP)
-$(transform-prebuilt-to-target)
+#file := $(TARGET_ROOT_OUT)/sbin/qmuxd.sh
+#ALL_PREBUILT += $(file)
+#$(file) : $(LOCAL_PATH)/root/sbin/qmuxd.sh | $(ACP)
+#$(transform-prebuilt-to-target)
 
-file := $(TARGET_ROOT_OUT)/sbin/rild.sh
-ALL_PREBUILT += $(file)
-$(file) : $(LOCAL_PATH)/root/sbin/rild.sh | $(ACP)
-$(transform-prebuilt-to-target)
+#file := $(TARGET_ROOT_OUT)/sbin/rild.sh
+#ALL_PREBUILT += $(file)
+#$(file) : $(LOCAL_PATH)/root/sbin/rild.sh | $(ACP)
+#$(transform-prebuilt-to-target)
