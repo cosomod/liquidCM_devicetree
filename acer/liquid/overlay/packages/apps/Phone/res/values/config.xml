@@ -38,22 +38,4 @@
     <!-- This device implements a noise suppression device for in call audio-->
     <bool name="has_in_call_noise_suppression">true</bool>
 
-
-	<bool name="button_return_home">true</bool>
-	<bool name="button_black_regex">false</bool>
-	<bool name="rotate_incall_screen">false</bool>
-	<string name="sip_call_options_key">SIP_ADDRESS_ONLY</string>
-	<bool name="button_vibrate_45">false</bool>
-	<bool name="button_force_touch">false</bool>
-	<string name="button_voicemail_provider_key"></string>
-	<string name="button_trackball_answer_timed">-1</string>
-	<bool name="button_left_hand">false</bool>
-	<bool name="button_always_proximity">true</bool>
-	<bool name="button_screen_awake">false</bool>
-	<bool name="button_show_organ">false</bool>
-	<bool name="button_led_notify">false</bool>
-	<bool name="button_vibrate_outgoing">true</bool>
-	<bool name="button_vibrate_call_waiting">false</bool>
-	<bool name="button_vibrate_hangup">true</bool>
-	<string name="button_trackball_hangup_timed">-1</string>
 </resources>
