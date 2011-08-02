@@ -35,14 +35,13 @@ TARGET_BOOTLOADER_BOARD_NAME := salsa
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-WPA_SUPPLICANT_VERSION      := VER_0_6_X
+WPA_SUPPLICANT_VERSION      := VER_0_5_X
 BOARD_WLAN_DEVICE           := bcm4325
 WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/bcm4329.ko"
 WIFI_DRIVER_FW_STA_PATH := "/etc/wifi/BCM4325.bin"
 WIFI_DRIVER_FW_AP_PATH := "/etc/wifi/BCM4325_apsta.bin"
 WIFI_DRIVER_MODULE_ARG := "firmware_path=/etc/wifi/BCM4325.bin nvram_path=/etc/wifi/nvram.txt"
 WIFI_DRIVER_MODULE_NAME := "bcm4329"
-
 
 BOARD_USES_GENERIC_AUDIO := false
 BOARD_HAVE_BLUETOOTH := true
@@ -59,13 +58,18 @@ TARGET_USES_OLD_LIBSENSORS_HAL := true
 TARGET_PROVIDES_LIBRIL := true
 
 BOARD_USE_USB_MASS_STORAGE_SWITCH := true
-
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun"
+BOARD_CUSTOM_USB_CONTROLLER := ../../device/acer/liquid/UsbController.cpp
+
+# Vibrator
+#BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/acer/liquid/vibrator.c
 
 #TARGET_PROXIMITY_SENSOR_LIMIT := 32717
 #VOLD_EMMC_SHARES_DEV_MAJOR := true
 #TARGET_PROVIDES_LIBRIL := 
 #BOARD_USES_OLD_CAMERA_HACK := true
+#BOARD_USE_FROYO_LIBCAMERA := true
+#BOARD_CAMERA_USE_GETBUFFERINFO := true
 #TARGET_LIBAGL_USE_GRALLOC_COPYBITS  := true
 # For Koush's recovery
 #BOARD_HAS_NO_SELECT_BUTTON := true
@@ -83,6 +87,8 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun"
 #BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x0c800000
 #BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x0c800000
 
+BOARD_CUSTOM_RECOVERY_KEYMAPPING:= ../../device/acer/liquid/recovery/recovery_ui.c
+
 #TARGET_PREBUILT_RECOVERY_KERNEL := device/acer/liquid/recovery_kernel
 
 BOARD_KERNEL_BASE    := 0x20000000
@@ -92,9 +98,12 @@ BOARD_PAGE_SIZE := 0x00001000
 TARGET_PREBUILT_KERNEL := device/acer/liquid/kernel
 
 BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=qcom
-BOARD_EGL_CFG := device/acer/liquid/proprietary/lib/egl/egl.cfg
+BOARD_EGL_CFG := vendor/acer/liquid/proprietary/egl.cfg
+BOARD_AVOID_DRAW_TEXTURE_EXTENSION := true
+TARGET_SKIA_USE_MORE_MEMORY := true
 
 # to enable the GPS HAL
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := salsa
 # AMSS version to use for GPS
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
+

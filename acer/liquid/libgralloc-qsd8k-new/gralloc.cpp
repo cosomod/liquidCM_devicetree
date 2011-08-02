@@ -22,8 +22,8 @@
 #include <sys/types.h>
 #include <sys/ioctl.h>
 
-#include <linux/android_pmem.h>
-
+//#include <linux/android_pmem.h>
+#include "android_pmem.h"
 #include "allocator.h"
 #include "gr.h"
 #include "gpu.h"
