@@ -15,7 +15,10 @@ gps.salsa \
 libcamera \
 gralloc.salsa \
 rzscontrol \
-dexpreopt
+dexpreopt \
+libstagefrighthw \
+libOmxCore \
+libmm-omxcore
 #libOmxCore \
 #libOmxVdec \
 #libOmxVidEnc
@@ -37,7 +40,7 @@ include frameworks/base/data/sounds/OriginalAudio.mk
 PRODUCT_LOCALES += hdpi
 
 # Pick up overlay for features that depend on non-open-source files
-DEVICE_PACKAGE_OVERLAYS := vendor/acer/liquid/overlay
+DEVICE_PACKAGE_OVERLAYS := device/acer/liquid/overlay
 
 # Publish that we support the live wallpaper feature.
 PRODUCT_COPY_FILES += \
@@ -56,7 +59,9 @@ PRODUCT_COPY_FILES += \
 device/acer/liquid/vold.fstab:system/etc/vold.fstab \
 device/acer/liquid/media_profiles.xml:system/etc/media_profiles.xml \
 device/acer/liquid/sysctl.conf:system/etc/sysctl.conf \
-device/acer/liquid/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf
+device/acer/liquid/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
+device/acer/liquid/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+
 #device/acer/liquid/proprietary/etc/dhcpcd/dhcpcd-run-hooks:system/etc/dhcpcd/dhcpcd-run-hooks \
 #device/acer/liquid/proprietary/etc/dhcpcd/dhcpcd-hooks/01-test:system/etc/dhcpcd/dhcpcd-hooks/01-test \
 #device/acer/liquid/proprietary/etc/dhcpcd/dhcpcd-hooks/20-dns.conf:system/etc/dhcpcd/dhcpcd-hooks/20-dns.conf \
@@ -81,7 +86,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.cust.tel.eons=1 \
     persist.ril.ecclist=000,08,110,112,118,119,911,999 \
     ro.ril.hsxpa=1 \
-    ro.ril.gprsclass=10
+    ro.ril.gprsclass=10 \
+    ro.setupwizard.enable_bypass=1 \
+    dalvik.vm.lockprof.threshold=500 \
+    dalvik.vm.dexopt-flags=m=y \
+    debug.sf.hw=1 \
+    ro.media.dec.aud.wma.enabled=1 \
+    ro.media.dec.vid.wmv.enabled=1
 
 # Acer specific proximity sensor calibration
 PRODUCT_PROPERTY_OVERRIDES += \

@@ -61,6 +61,8 @@ BOARD_USE_USB_MASS_STORAGE_SWITCH := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun"
 BOARD_CUSTOM_USB_CONTROLLER := ../../device/acer/liquid/UsbController.cpp
 
+WITH_DEXPREOPT := true
+
 # Vibrator
 #BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/acer/liquid/vibrator.c
 
