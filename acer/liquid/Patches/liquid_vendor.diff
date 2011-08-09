@@ -2,13 +2,18 @@ diff --git a/vendor/cyanogen/products/AndroidProducts.mk b/vendor/cyanogen/produ
 index ed7f0cf..1bbd185 100644
 --- a/vendor/cyanogen/products/AndroidProducts.mk
 +++ b/vendor/cyanogen/products/AndroidProducts.mk
-@@ -47,4 +47,5 @@ PRODUCT_MAKEFILES := \
-     $(LOCAL_DIR)/cyanogen_vivow.mk \
-     $(LOCAL_DIR)/cyanogen_z71.mk \
-     $(LOCAL_DIR)/cyanogen_zeppelin.mk \
--    $(LOCAL_DIR)/cyanogen_zero.mk
-+    $(LOCAL_DIR)/cyanogen_zero.mk \
-+    $(LOCAL_DIR)/cyanogen_liquid.mk
+ add_lunch_combo cyanogen_ace-eng
+-add_lunch_combo cyanogen_anzu-eng
+ add_lunch_combo cyanogen_blade-eng
+ add_lunch_combo cyanogen_bravo-eng
+ add_lunch_combo cyanogen_bravoc-eng
+@@ -52,4 +51,4 @@ add_lunch_combo cyanogen_z71-eng
+ add_lunch_combo cyanogen_zeppelin-eng
+ add_lunch_combo cyanogen_zero-eng
+ add_lunch_combo cyanogen_zeus-eng
+-
++add_lunch_combo cyanogen_liquid-eng
+
 diff --git a/vendor/cyanogen/products/cyanogen_liquid.mk b/vendor/cyanogen/products/cyanogen_liquid.mk
 index e69de29..60f6f63 100644
 --- a/vendor/cyanogen/products/cyanogen_liquid.mk
