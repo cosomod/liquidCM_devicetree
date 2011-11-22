@@ -20,18 +20,26 @@
 USE_CAMERA_STUB := false
 #######
 
-TARGET_NO_BOOTLOADER := true
-TARGET_NO_KERNEL := true
-TARGET_NO_RADIOIMAGE := true
-
+#Device
 TARGET_CPU_ABI  := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
+ARCH_ARM_HAVE_ARMV7A_BUG := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
-
 TARGET_BOARD_PLATFORM := qsd8k
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 TARGET_BOOTLOADER_BOARD_NAME := salsa
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
+TARGET_NO_KERNEL := true
+#BOARD_USES_BOOTMENU := false
+
+#Kernel
+TARGET_PREBUILT_KERNEL := device/acer/liquid/kernel
+BOARD_KERNEL_CMDLINE := console=null quiet
+BOARD_KERNEL_BASE    := 0x20000000
+BOARD_NAND_PAGE_SIZE := 2048
+BOARD_PAGE_SIZE := 0x00001000
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
@@ -43,7 +51,9 @@ WIFI_DRIVER_FW_AP_PATH := "/etc/wifi/BCM4325_apsta.bin"
 WIFI_DRIVER_MODULE_ARG := "firmware_path=/etc/wifi/BCM4325.bin nvram_path=/etc/wifi/nvram.txt"
 WIFI_DRIVER_MODULE_NAME := "bcm4329"
 
+#Hardware
 BOARD_USES_GENERIC_AUDIO := false
+TARGET_PROVIDES_LIBAUDIO := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_HAVE_FM_RADIO := false
@@ -52,16 +62,23 @@ BOARD_USES_QCOM_LIBS := true
 BOARD_USES_QCOM_LIBRPC := true
 BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QCOM_GPS := true
-TARGET_PROVIDES_LIBAUDIO := true
 TARGET_USES_OLD_LIBSENSORS_HAL := true
 
+# to enable the GPS HAL
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := salsa
+# AMSS version to use for GPS
+BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
+
+#Android Defines
+TARGET_SKIA_USE_MORE_MEMORY := true
 TARGET_PROVIDES_LIBRIL := true
-
 BOARD_USE_USB_MASS_STORAGE_SWITCH := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun"
+#TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun"
 BOARD_CUSTOM_USB_CONTROLLER := ../../device/acer/liquid/UsbController.cpp
+BOARD_EGL_CFG := vendor/acer/liquid/proprietary/egl.cfg
 
-WITH_DEXPREOPT := true
+######OLD and USELESS DEFINES#############################
+#WITH_DEXPREOPT := true
 
 # Vibrator
 #BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/acer/liquid/vibrator.c
@@ -89,23 +106,13 @@ WITH_DEXPREOPT := true
 #BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x0c800000
 #BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x0c800000
 
-BOARD_CUSTOM_RECOVERY_KEYMAPPING:= ../../device/acer/liquid/recovery/recovery_ui.c
+#BOARD_CUSTOM_RECOVERY_KEYMAPPING:= ../../device/acer/liquid/recovery/recovery_ui.c
 
 #TARGET_PREBUILT_RECOVERY_KERNEL := device/acer/liquid/recovery_kernel
 
-BOARD_KERNEL_BASE    := 0x20000000
-BOARD_NAND_PAGE_SIZE := 2048
-BOARD_PAGE_SIZE := 0x00001000
+#BOARD_AVOID_DRAW_TEXTURE_EXTENSION := true
+#
+#BOARD_USE_SCREENCAP := true
 
-TARGET_PREBUILT_KERNEL := device/acer/liquid/kernel
 
-BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=qcom
-BOARD_EGL_CFG := vendor/acer/liquid/proprietary/egl.cfg
-BOARD_AVOID_DRAW_TEXTURE_EXTENSION := true
-TARGET_SKIA_USE_MORE_MEMORY := true
-
-# to enable the GPS HAL
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := salsa
-# AMSS version to use for GPS
-BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
 

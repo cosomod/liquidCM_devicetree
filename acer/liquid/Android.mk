@@ -15,8 +15,10 @@
 LOCAL_PATH := $(my-dir)
 subdir_makefiles := \
 	$(LOCAL_PATH)/liblights/Android.mk \
-	$(LOCAL_PATH)/libgralloc-qsd8k-new/Android.mk \
-	$(LOCAL_PATH)/libcamera2/Android.mk	
+	$(LOCAL_PATH)/libaudio/Android.mk \
+	$(LOCAL_PATH)/libgralloc/Android.mk \
+	$(LOCAL_PATH)/libcopybit/Android.mk \
+	$(LOCAL_PATH)/libcamera2/Android.mk
 include $(subdir_makefiles)
 #$(LOCAL_PATH)/libaudio-qsd8k-new/Android.mk \
 #$(LOCAL_PATH)/libsensors/Android.mk

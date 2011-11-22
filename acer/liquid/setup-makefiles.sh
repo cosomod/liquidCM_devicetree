@@ -40,6 +40,8 @@ mkdir -p ../../../vendor/$MANUFACTURER/$DEVICE
 PRODUCT_PACKAGES := \\
     LiveWallpapers \\
     LiveWallpapersPicker \\
+    bash \\
+    e2fsck \\
     librs_jni
 
 # Publish that we support the live wallpaper feature.

@@ -12,18 +12,13 @@
 PRODUCT_PACKAGES += \
 lights.salsa \
 gps.salsa \
-libcamera \
 gralloc.salsa \
+copybit.salsa \
+libcamera \
 rzscontrol \
-dexpreopt \
 libstagefrighthw \
-libOmxCore \
-libmm-omxcore
-#libOmxCore \
-#libOmxVdec \
-#libOmxVidEnc
-
-DISABLE_DEXPREOPT := false
+libmm-omxcore \
+libOmxCore
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -31,7 +26,7 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 # Check generic.mk/languages_full.mk to see what applications/languages are installed turns out all languages get included if I don't specify, but some seem to be missing the actuall translation.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic.mk)
-$(call inherit-product, device/common/gps/gps_as_supl.mk)
+$(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
 # Enabling Ring Tones
 include frameworks/base/data/sounds/OriginalAudio.mk
@@ -56,18 +51,8 @@ frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:sy
 
 ## (1) Copy Configuration files
 PRODUCT_COPY_FILES += \
-device/acer/liquid/vold.fstab:system/etc/vold.fstab \
-device/acer/liquid/media_profiles.xml:system/etc/media_profiles.xml \
-device/acer/liquid/sysctl.conf:system/etc/sysctl.conf \
-device/acer/liquid/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
-device/acer/liquid/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
 
-#device/acer/liquid/proprietary/etc/dhcpcd/dhcpcd-run-hooks:system/etc/dhcpcd/dhcpcd-run-hooks \
-#device/acer/liquid/proprietary/etc/dhcpcd/dhcpcd-hooks/01-test:system/etc/dhcpcd/dhcpcd-hooks/01-test \
-#device/acer/liquid/proprietary/etc/dhcpcd/dhcpcd-hooks/20-dns.conf:system/etc/dhcpcd/dhcpcd-hooks/20-dns.conf \
-#device/acer/liquid/proprietary/etc/dhcpcd/dhcpcd-hooks/95-configured:system/etc/dhcpcd/dhcpcd-hooks/95-configured
-
-$(call inherit-product-if-exists, device/acer/liquid/KernelModules.mk)
+#$(call inherit-product-if-exists, device/acer/liquid/KernelModules.mk)
 
 ## (2) Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/acer/liquid/liquid-vendor.mk)

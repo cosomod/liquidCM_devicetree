@@ -34,8 +34,8 @@
 #include <ui/Overlay.h>
 
 extern "C" {
-#include <android_pmem.h>
-#include <msm_camera.h>
+#include <linux/android_pmem.h>
+#include "msm_camera.h"
 }
 
 struct str_map {
@@ -107,8 +107,6 @@ typedef struct {
 typedef uint8_t cam_ctrl_type;
 
 typedef struct {
-	unsigned short video_width;
-	unsigned short video_height;
 	unsigned short picture_width;
 	unsigned short picture_height;
 	unsigned short display_width;
@@ -119,6 +117,8 @@ typedef struct {
 	unsigned short ui_thumbnail_width;
 	unsigned short thumbnail_width;
 	unsigned short thumbnail_height;
+	unsigned short video_width;
+	unsigned short video_height;
 	unsigned short raw_picture_height;
 	unsigned short raw_picture_width;
 	unsigned short filler7;

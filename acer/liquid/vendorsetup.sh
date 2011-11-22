@@ -19,5 +19,5 @@
 # In particular, you can add lunch options with the add_lunch_combo
 # function: add_lunch_combo generic-eng
 
-add_lunch_combo full_liquid-userdebug
-add_lunch_combo full_liquid-eng
+add_lunch_combo cyanogen_liquid-user
+#add_lunch_combo full_liquid-eng
